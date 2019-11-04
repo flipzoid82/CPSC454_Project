@@ -1,12 +1,22 @@
+<?php
+  session_start();
+
+  include_once 'includes/dbh.inc.php';
+  if (isset( $_SESSION['uid'])){
+    // Grab user data from the database using the user_id
+    $uid = $_SESSION['uid'];
+    // Let them access the "logged in only" pages
+  } else {
+      // Redirect them to the login page
+      header("Location: index.php?login=accessDenied");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
-  <?php
-    session_start();
-    $uid = $_SESSION['uid'];
-    include_once 'includes/dbh.inc.php';
-  ?>
+
   <meta charset="utf-8">
   <title>Log in</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">

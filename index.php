@@ -70,6 +70,8 @@
     if (isset($_GET['login'])){
       if ($_GET['login']==='invalid_name_or_password') {
         echo '<center><p style="color:red">Invalid username or password!<br>Please try again.</p></center>';
+      } else if ($_GET['login']==='accessDenied') {
+        echo '<center><p style="color:red">You must login before accessing that page.</p></center>';
       }
     }
   ?>
