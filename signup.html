@@ -39,16 +39,18 @@
 <body>
   <!-- navbar BEGIN -->
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       <img src="img/cloud-logo.png" width="45" height="45" class="d-inline-block" alt="">
       My Cloud
     </a>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
       <li class="nav-item">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          Log In
-        </button>
+        <form class="" action="index.php" method="post">
+          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Log In
+          </button>
+        </form>
       </li>
       <li class="nav-item" style="padding-left:5px;">
         <!-- Button trigger modal -->
@@ -85,7 +87,7 @@
             <input type="password" name="password2" class="form-control" placeholder="Confirm password">
           </div>
           <button type="submit" class="btn btn-primary self-align-center">Submit</button>
-          <small class="form-text" style="color: white; padding-bottom:10px;">Already have an account? <a href="index.html">Login here</a></small>
+          <small class="form-text" style="color: white; padding-bottom:10px;">Already have an account? <a href="index.php">Login here</a></small>
         </form>
       </div>
       <div class="col-md"></div>

@@ -20,7 +20,7 @@
 	if (!mysqli_query($conn, $sql)) {
     die('Error: ' . mysql_error());
   }else{
-	header("Location: ../index.html?signup=success");
+	header("Location: ../index.php?signup=success");
 	exit();
   }
 ?>
