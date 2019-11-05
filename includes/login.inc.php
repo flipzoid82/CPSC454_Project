@@ -27,7 +27,7 @@ if ($resultCheck < 1) {
 				$_SESSION['lname'] = $row['lname'];
 				$_SESSION['email'] = $row['email'];
 
-				header("Location: ../main.php?login=success");
+				header("Location: ../main.php");
 				exit();
 			}
     }

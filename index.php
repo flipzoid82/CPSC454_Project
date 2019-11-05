@@ -3,23 +3,25 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Log in</title>
+  <title>My Cloud</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="stylesheet" href="stylesheets/style.css">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 </head>
 
-<body>
+<body style="background-image: url(img/cloud-logo.png);background-repeat: no-repeat; background-position: 50% 50%; background-size: 60em 60em; background-origin: content-box, border-box">
   <!-- navbar BEGIN -->
-  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="#">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd; opacity:.9">
+    <a class="navbar-brand" href="index.php">
       <img src="img/cloud-logo.png" width="45" height="45" class="d-inline-block" alt="">
-      My Cloud
+      <p class="d-inline-block" style="font-family: 'Pacifico', cursive;">MyCloud</p>
     </a>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
       <li class="nav-item">
@@ -42,10 +44,16 @@
 
   <!-- main body BEGIN -->
   <!-- Log in form BEGIN -->
-  <div class="container" style="padding-top:150px; color:white;">
+  <div class="container">
+    <div class="row">
+      <div class="col" style="padding-top:150px">
+        <center><h1 style="font-family: 'Pacifico', cursive;">Welcome to MyCloud<br></h1></center>
+        <center><h5>Your own personal cloud storage system.<br><br>Please log in</h5></center>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md"></div>
-      <div class="col-3" style="border: 1px solid white; border-radius: 10px; background-color: rgba(128, 128, 128, .75);">
+      <div class="col-3" style="border: 1px solid white; border-radius: 10px; background-color: rgba(128, 128, 128, .75); color:white;">
         <form action="includes/login.inc.php" method="POST">
           <div class="form-group" style="padding-top:10px;">
             <label for="uid">Username or Email address</label>
