@@ -15,8 +15,8 @@
 
     $bucket = 'mycloudsecurebucket';
     $keyname = $file_name;
-    $keyID = 'AKIA4MEBBN5UXQGNNRDC';
-    $secret = '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';
+    $keyID = '';
+    $secret = '';
 
     $s3 = new Aws\S3\S3Client([
     			'region'  => 'us-west-2',
