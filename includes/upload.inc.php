@@ -5,6 +5,7 @@
 
   require '../vendor/autoload.php';
   use Aws\S3\S3Client;
+
   if (isset($_FILES['myFile'])) {
     $file_name = $_FILES['myFile']['name'];
     $tmp = explode('.', $file_name);
@@ -12,10 +13,10 @@
     $name = $tmp[0];
     $file_tmp = $_FILES['myFile']['tmp_name'];
 
-    $bucket = '';
+    $bucket = 'mycloudsecurebucket';
     $keyname = $file_name;
-    $keyID = '';
-    $secret = '';
+    $keyID = 'AKIA4MEBBN5UXQGNNRDC';
+    $secret = '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';
 
     $s3 = new Aws\S3\S3Client([
     			'region'  => 'us-west-2',
@@ -29,8 +30,8 @@
     // Upload data.
     try {
         $result = $s3->putObject([
-            'Bucket' => '',
-            'Key'    => $file_name,
+            'Bucket' => $bucket,
+            'Key'    => $keyname,
             'SourceFile' => $file_tmp,
             'ACL'    => 'public-read',
         ]);
@@ -45,7 +46,7 @@
     if (!mysqli_query($conn, $sql)) {
       die('Error: ' . mysql_error());
     } else {
-      header("Location: ../main.php?fileUpload=success");
+      header('Location: ../main.php?fileUpload=success&file='.$name.'.'.$ext);
       exit();
     }
   } else {
