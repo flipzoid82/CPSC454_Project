@@ -13,10 +13,7 @@
     $name = $tmp[0];
     $file_tmp = $_FILES['myFile']['tmp_name'];
 
-    $bucket = 'mycloudsecurebucket';
-    $keyname = $file_name;
-    $keyID = '';
-    $secret = '';
+    //AWS Credentials Redacted
 
     $s3 = new Aws\S3\S3Client([
     			'region'  => 'us-west-2',
@@ -35,7 +32,6 @@
             'SourceFile' => $file_tmp,
             'ACL'    => 'public-read',
         ]);
-        //echo $result->get('ObjectURL');
     } catch (Aws\S3\Exception\S3Exception $e) {
         echo "There was an error uploading the file.\n";
         echo $e->getMessage();

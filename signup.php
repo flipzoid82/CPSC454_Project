@@ -14,27 +14,6 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <title>Sign Up</title>
-  
-  <script>
-    function checkPassword(form) {
-      password = form.password.value;
-      password2 = form.password2.value;
-
-      if (password == '')
-        alert("Please enter Password");
-
-      if (password2 == '')
-        alert("Please confirm Password");
-
-      else if (password != password2) {
-        alert("\n Password did not match. Try again");
-        return false;
-      } else {
-        alert("Account Created. Please Login!");
-        return true;
-      }
-    }
-  </script>
 </head>
 
 <body style="background-image: url(img/cloud-logo.png);background-repeat: no-repeat; background-position: 50% 50%; background-size: 60em 60em; background-origin: content-box, border-box">
@@ -46,16 +25,14 @@
     </a>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
       <li class="nav-item">
-        <!-- Button trigger modal -->
-        <form class="" action="index.php" method="post">
-          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <form action="index.php" method="post">
+          <button type="submit" class="btn btn-primary">
             Log In
           </button>
         </form>
       </li>
       <li class="nav-item" style="padding-left:5px;">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" disabled>
+        <button type="button" class="btn btn-secondary" disabled>
           Sign Up
         </button>
       </li>
@@ -95,12 +72,21 @@
             <input type="password" name="password2" class="form-control" placeholder="Confirm password">
           </div>
           <button type="submit" class="btn btn-primary self-align-center">Submit</button>
-          <small class="form-text" style="color: white; padding-bottom:10px;">Already have an account? <a href="index.php">Login here</a></small>
+          <small class="form-text" style="color: white; padding-bottom:10px;">Already have an account? <a href="index.php" style="color:blue">Login here</a></small>
         </form>
       </div>
       <div class="col-md"></div>
     </div>
   </div>
+  <?php
+    if (isset($_GET['signUp'])){
+      if ($_GET['signUp']==='passNotMatch') {
+        echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">Password did not match!<br>Please try again.</p></center>';
+      } else if ($_GET['signUp']==='usernameOrEmailTaken') {
+        echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">Username or email is taken.<br>Please try again. </p></center>';
+      }
+    }
+  ?>
   <!-- Sign up form END -->
 
   <!-- js. -->

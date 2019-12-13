@@ -18,7 +18,8 @@
 <head>
   <script type='text/javascript>alert($message)'></script>
   <meta charset="utf-8">
-  <title>Shared Cloud</title>
+  <title>Recent</title>
+  <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -31,11 +32,26 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta charset="utf-8">
-  <title>My Cloud</title>
   <!--  -->
 </head>
 
 <body>
+  <style media="screen">
+    a:link {
+        text-decoration: none;
+      }
+    a:visited {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    a:active {
+      text-decoration: none;
+    }
+  </style>
   <!-- navbar BEGIN -->
   <nav class="navbar navbar-light" style="background-color: #e3f2fd; opacity:.9">
     <a class="navbar-brand" href="main.php">
@@ -58,10 +74,23 @@
     <div class="row justify-content-center">
       <div class="col align-self-center">
         <?php
-          if (isset($_GET['fileDelete'])){
+          if (isset($_GET['fileUpload'])){
+            $filename = $_GET['file'];
+            if ($_GET['fileUpload']==='success') {
+              echo '<center><p style="color:green; padding-top: 1em; font-weight: bold">'.$filename.' was successfully uploaded!</center>';
+            }
+          } else if (isset($_GET['share'])){
+            $filename = $_GET['file'];
+            $user = $_GET['user'];
+            if ($_GET['share']==='success') {
+              echo '<center><p style="color:green; padding-top: 1em">'.$filename.' was successfully shared with <strong>@'.$user.'</strong>!</center>';
+            } else {
+              echo '<center><p style="color:red; padding-top: 1em">The username you entered is not in MyCloud yet!</center>';
+            }
+          } else if (isset($_GET['fileDelete'])) {
             $filename = $_GET['file'];
             if ($_GET['fileDelete']==='success') {
-              echo '<center><p style="color:green; padding-top: 1em; font-weight: bold">'.$filename.' was successfully uploaded!</center>';
+              echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">'.$filename.' was successfully moved to trash!</center>';
             }
           }
         ?>
@@ -90,24 +119,22 @@
               <span class="text-muted"> > </span>
             </li>
             </a>
-            <a href="#">
-            <li class="list-group-item d-flex justify-content-between" style="color: white; background-color:grey">
-              <span class="text-muted"><i class="fas fa-users" style="color: white"></i></span>
+            <a href="shared.php">
+            <li class="list-group-item d-flex justify-content-between">
+              <span class="text-muted"><i class="fas fa-users"></i></span>
               <div>
-                <h6 class="my-0"><strong>Shared with me</strong></h6>
+                <h6 class="my-0">Shared with me</h6>
               </div>
-              <span style="color: white"> > </span>
+              <span class="text-muted"> > </span>
             </li>
             </a>
-          <a href="recent.php">
-          <li class="list-group-item d-flex justify-content-between">
-            <span class="text-muted"><i class="fas fa-history"></i></span>
+          <li class="list-group-item d-flex justify-content-between" style="color: white; background-color:grey">
+            <span class="text-muted"><i class="fas fa-history" style="color: white"></i></span>
             <div>
-              <h6 class="my-0">Recent</h6>
+              <h6 class="my-0"><strong>Recent</strong></h6>
             </div>
-            <span class="text-muted"> > </span>
+            <span style="color: white"> > </span>
           </li>
-          </a>
           <a href="trash.php">
           <li class="list-group-item d-flex justify-content-between">
             <span class="text-muted"><i class="fas fa-trash-alt"></i></span>
@@ -132,50 +159,42 @@
         <!-- Main Files Container BEGIN -->
         <hr>
         <div class="row" style="padding-left:1em">
-          <h3>Shared with me</h3>
+          <h3>Main Cloud</h3>
         </div>
         <hr>
         <div class="row justify-content-center">
           <!-- File image and description container -->
           <?php
             $counter = 0;
-            $sql = "SELECT * FROM `shared` WHERE `user1` = '$uid' OR `user2` = '$uid'";
+            $sql = "SELECT * FROM `files` WHERE `uid` = '$uid' ORDER BY `fileID` DESC";
             $result = mysqli_query($conn, $sql) or die(mysql_error());
             if(mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
-                $file_name = $row['file'];
-                $tmp = explode('.', $file_name);
-                $ext = end($tmp);
-                $filename = $tmp[0];
-                $user1 = $row['user1'];
-                $user2 = $row['user2'];
-                if($user1==$uid){
-                  $uShare = $user2;
-                } else {
-                  $uShare = $user1;
-                }
                 //Sets the file image icon
-                if ($ext=='png' || $ext=='jpg' || $ext=='jpeg' || $ext=='gif') {
+                if ($row['ext']=='png' || $row['ext']=='jpg' || $row['ext']=='jpeg' || $row['ext']=='gif') {
                   $extImg = 'img/image.png';
-                } elseif ($ext=='txt') {
+                } elseif ($row['ext']=='txt') {
                   $extImg = 'img/txt.png';
-                } elseif ($ext=='doc' || $ext=='docx') {
+                } elseif ($row['ext']=='doc' || $row['ext']=='docx') {
                   $extImg = 'img/docx.jpg';
-                } elseif ($ext=='xls' || $ext=='xlsx') {
+                } elseif ($row['ext']=='xls' || $row['ext']=='xlsx') {
                   $extImg = 'img/xlsx.jpg';
-                } elseif ($ext=='ppt' || $ext=='pptx') {
+                } elseif ($row['ext']=='ppt' || $row['ext']=='pptx') {
                   $extImg = 'img/pptx.jpg';
-                } elseif ($ext=='pdf') {
+                } elseif ($row['ext']=='pdf') {
                   $extImg = 'img/pdf.jpg';
-                } elseif ($ext=='zip' || $ext=='rar' || $ext=='tar' || $ext=='7z') {
+                } elseif ($row['ext']=='zip' || $row['ext']=='rar' || $row['ext']=='tar' || $row['ext']=='7z') {
                   $extImg = 'img/zip.png';
-                } elseif ($ext=='mpeg' || $ext=='wmv' || $ext=='mp4' || $ext=='avi') {
+                } elseif ($row['ext']=='mpeg' || $row['ext']=='wmv' || $row['ext']=='mp4' || $row['ext']=='avi') {
                   $extImg = 'img/video.png';
-                } elseif ($ext=='mp3' || $ext=='wav' || $ext=='aiff' || $ext=='wma') {
+                } elseif ($row['ext']=='mp3' || $row['ext']=='wav' || $row['ext']=='aiff' || $row['ext']=='wma') {
                   $extImg = 'img/audio.png';
                 } else {
                     $extImg = 'img/unknown.png';
                 }
+
+                $filename = $row['filename'];
+                $ext = $row['ext'];
 
                 echo '<div class="col">
                   <a data-toggle="modal" href="#fileModal'.$counter.'">
@@ -196,7 +215,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="fileModal'.$counter.'Label">You are sharing this file with <strong>@'.$uShare.'</strong></h5>
+                        <h5 class="modal-title" id="fileModal'.$counter.'Label">What would you like to do?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -215,8 +234,25 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left"><i class="fas fa-times-circle"></i></button>
-                        <a href="includes/deleteShared.inc.php?filename='.$filename.'&ext='.$ext.'" class="btn btn-primary" role="button"><span class="text-muted"><i class="fas fa-trash-alt" style="color:#fff"></i></span></a>
+                        <a href="includes/trash.inc.php?filename='.$filename.'&ext='.$ext.'" class="btn btn-primary btn-primary" role="button"><span class="text-muted"><i class="fas fa-trash-alt" style="color:#fff"></i></span></a>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#shareInput'.$counter.'" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="far fa-share-square"></i></a>
                         <a href="https://mycloudsecurebucket.s3-us-west-2.amazonaws.com/'.$filename.'.'.$ext.'" class="btn btn-primary btn-primary" role="button"><i class="fas fa-cloud-download-alt"></i></a>
+                      </div>
+                      <div class="collapse" id="shareInput'.$counter.'">
+                        <div class="card card-body">
+                        <form action="includes/shared.inc.php?filename='.$filename.'&ext='.$ext.'" method="POST">
+                          <label for="username">Enter username to share with:</label>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">@</span>
+                            </div>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="username" aria-label="" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Share</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -226,16 +262,13 @@
               }
             }else{
               echo '<div class="container md-auto">
-                    <center><h3>You don\'t have any shared files in your MyCloud yet.</h3></center>
+                    <center><h3>You don\'t have any files in your MyCloud yet.</h3></center>
                     </div>';
             }
             ?>
           <!-- File image and description container END-->
         </div>
         <!-- Main File Container END -->
-        <hr>
-        <div class="row justify-content-center" style="padding-top:1em;">
-        </div>
         <hr>
       </div>
     </div>

@@ -1,12 +1,12 @@
 <?php
+  include_once 'dbh.inc.php';
+  session_start();
+  $uid = $_SESSION['uid'];
+  
   if (isset($_GET['filename'])){
     $filename = $_GET['filename'];
     $ext = $_GET['ext'];
     $full = $filename.'.'.$ext;
-
-    include_once 'dbh.inc.php';
-    session_start();
-    $uid = $_SESSION['uid'];
 
     // require '../vendor/autoload.php';
     // use Aws\S3\S3Client;

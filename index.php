@@ -25,15 +25,13 @@
     </a>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
       <li class="nav-item">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" disabled>
+        <button type="button" class="btn btn-secondary" disabled>
           Log In
         </button>
       </li>
       <li class="nav-item" style="padding-left:5px;">
-        <!-- Button trigger modal -->
-        <form class="" action="signup.html" method="post">
-          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <form action="signup.php" method="post">
+          <button type="submit" class="btn btn-primary">
             Sign Up
           </button>
         </form>
@@ -68,7 +66,7 @@
             <label class="form-check-label" for="exampleCheck1">Remember me</label>
           </div>
           <button type="submit" class="btn btn-primary self-align-center">Log in</button>
-          <small class="form-text" style="color:white; padding-bottom:10px;">Don't have an account yet? <a href="signup.html">Sign up here.</a></small>
+          <small class="form-text" style="color:white; padding-bottom:10px;">Don't have an account yet? <a href="signup.php" style="color:blue">Sign up here.</a></small>
         </form>
       </div>
       <div class="col-md"></div>

@@ -19,6 +19,7 @@
   <script type='text/javascript>alert($message)'></script>
   <meta charset="utf-8">
   <title>Main Cloud</title>
+  <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -90,7 +91,7 @@
           } else if (isset($_GET['fileDelete'])) {
             $filename = $_GET['file'];
             if ($_GET['fileDelete']==='success') {
-              echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">'.$filename.' was successfully deleted!</center>';
+              echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">'.$filename.' was successfully moved to trash!</center>';
             }
           }
         ?>
@@ -110,12 +111,12 @@
               </div>
               <span class="text-muted"> > </span>
             </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span class="text-muted"><i class="fas fa-cloud-upload-alt"></i></span>
+            <li class="list-group-item d-flex justify-content-between" style="color: white; background-color:grey">
+              <span class="text-muted"><i class="fas fa-cloud-upload-alt" style="color: white"></i></span>
               <div>
                 <h6 class="my-0"><strong>MyCloud</strong></h6>
               </div>
-              <span class="text-muted"> > </span>
+              <span style="color: white"> > </span>
             </li>
             <a href="shared.php">
             <li class="list-group-item d-flex justify-content-between">
@@ -126,6 +127,7 @@
               <span class="text-muted"> > </span>
             </li>
             </a>
+          <a href="recent.php">
           <li class="list-group-item d-flex justify-content-between">
             <span class="text-muted"><i class="fas fa-history"></i></span>
             <div>
@@ -133,6 +135,8 @@
             </div>
             <span class="text-muted"> > </span>
           </li>
+          </a>
+          <a href="trash.php">
           <li class="list-group-item d-flex justify-content-between">
             <span class="text-muted"><i class="fas fa-trash-alt"></i></span>
             <div>
@@ -140,6 +144,7 @@
             </div>
             <span class="text-muted"> > </span>
           </li>
+          </a>
         </ul>
 
           <form class="card p-2">
@@ -230,15 +235,19 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left"><i class="fas fa-times-circle"></i></button>
-                        <a href="includes/delete.inc.php?filename='.$filename.'&ext='.$ext.'" class="btn btn-primary btn-danger" role="button"><span class="text-muted"><i class="fas fa-trash-alt" style="color:#000"></i></span></a>
+                        <a href="includes/trash.inc.php?filename='.$filename.'&ext='.$ext.'" class="btn btn-primary btn-primary" role="button"><span class="text-muted"><i class="fas fa-trash-alt" style="color:#fff"></i></span></a>
                         <a class="btn btn-primary" data-toggle="collapse" href="#shareInput'.$counter.'" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="far fa-share-square"></i></a>
                         <a href="https://mycloudsecurebucket.s3-us-west-2.amazonaws.com/'.$filename.'.'.$ext.'" class="btn btn-primary btn-primary" role="button"><i class="fas fa-cloud-download-alt"></i></a>
                       </div>
                       <div class="collapse" id="shareInput'.$counter.'">
                         <div class="card card-body">
                         <form action="includes/shared.inc.php?filename='.$filename.'&ext='.$ext.'" method="POST">
+                          <label for="username">Enter username to share with:</label>
                           <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="username" placeholder="username" aria-label="" aria-describedby="basic-addon2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">@</span>
+                            </div>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="username" aria-label="" aria-describedby="basic-addon2">
                               <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">Share</button>
                               </div>

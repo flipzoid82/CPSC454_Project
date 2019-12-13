@@ -1,3 +1,11 @@
-a:link {
+a {
+  color: inherit;
   text-decoration: none;
+}
+
+a:hover 
+{
+   color:#0060B6; 
+   text-decoration:none; 
+   cursor:pointer;  
 }
