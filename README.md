@@ -58,6 +58,8 @@
     ![](./img/md-img/recent.png)
     >This page sorts the files in the main cloud from newest to oldest.
 
+---
+
 ### **The src code for the mobile version of the app is located here:**
 - https://github.com/hectorRod101/MyCloudSecure
 
