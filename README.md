@@ -2,11 +2,11 @@
 
 ## This project was developed by:
 ### Hector Rodriguez: 
-- Mobile Integration, AWS Administrator/Implementation
+- Mobile Integration, AWS Administrator/Implementation, Frontend Design
 ### Kayla Nguyen: 
-- TLS/HTTPS Implementation, Backend 
+- SSL/TLS/HTTPS Implementation, Backend 
 ### Joesh Bautista: 
-- Frontend Design, Backend and AWS Implementation
+- Frontend Design, Backend and AWS Implementation, Database Design
 ---
 ## Technologies used:
 - AWS: IAM, Elastic Beanstalk, S3, RDS
