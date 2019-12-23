@@ -1,9 +1,12 @@
 # CPSC 454 - Class Project: MyCloud Secure
 
 ## This project was developed by:
-- Hector Rodriguez
-- Kayla Nguyen 
-- Joesh Bautista
+- Hector Rodriguez: 
+> Mobile Integration, AWS Administrator/Implementation
+- Kayla Nguyen: 
+> TLS/HTTPS Implementation, Backend 
+- Joesh Bautista: 
+> Frontend Design, Backend and AWS Implementation
 
 ## Technologies used:
 - AWS: IAM, Elastic Beanstalk, S3, RDS
@@ -64,7 +67,7 @@
 - https://github.com/hectorRod101/MyCloudSecure
 
 ### **Our video presentation can be found here:**
-- https://youtu.be/9CGh_9R8D6k
+- https://youtu.be/53WhmsXi_i0
 
 
 
