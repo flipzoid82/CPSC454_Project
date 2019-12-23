@@ -1,29 +1,43 @@
 # CPSC 454 - Class Project: MyCloud Secure
 
 ## This project was developed by:
-- Hector Rodriguez: 
-> Mobile Integration, AWS Administrator/Implementation
-- Kayla Nguyen: 
-> TLS/HTTPS Implementation, Backend 
-- Joesh Bautista: 
-> Frontend Design, Backend and AWS Implementation
-
+### Hector Rodriguez: 
+- Mobile Integration, AWS Administrator/Implementation
+### Kayla Nguyen: 
+- TLS/HTTPS Implementation, Backend 
+### Joesh Bautista: 
+- Frontend Design, Backend and AWS Implementation
+---
 ## Technologies used:
 - AWS: IAM, Elastic Beanstalk, S3, RDS
 - HTML, CSS and Bootstrap 4
 - PHP
 - MySQL
 
-### MyCloud Secure is live: https://www.mycloudsecure.me
+### **The src code for the mobile version of the app is located here:**
+- https://github.com/hectorRod101/MyCloudSecure
 
+### **Our video presentation can be found here:**
+- https://youtu.be/53WhmsXi_i0
+
+### MyCloud Secure is live: https://www.mycloudsecure.me
 ---
 ### **The following demonstrates the functionalities of the webApp:**
 
 1. **Login/register:**
     - If you already have an account, simply sign in. 
     ![](./img/md-img/log-in.png)
+    > Login implements the following security features:
+       - Wrong Password
+       - Invalid username / email
+       - Access denied if trying to access a page that requires *login* credentials 
     - If not, then you can register and then login afterwards.
     ![](./img/md-img/register.png)
+    > Register implements the following security features:
+       - Duplicate username / email error
+       - Invalid email
+       - Passwords do not match
+       - Password too short
 
 2. **After a successful login, you will see this screen:**
     ![](./img/md-img/main.png)
@@ -60,14 +74,7 @@
 5. **Recent:**
     ![](./img/md-img/recent.png)
     >This page sorts the files in the main cloud from newest to oldest.
-
 ---
-
-### **The src code for the mobile version of the app is located here:**
-- https://github.com/hectorRod101/MyCloudSecure
-
-### **Our video presentation can be found here:**
-- https://youtu.be/53WhmsXi_i0
 
 
 
