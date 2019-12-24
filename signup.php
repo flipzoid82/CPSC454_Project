@@ -80,8 +80,11 @@
   </div>
   <?php
     if (isset($_GET['signUp'])){
-      if ($_GET['signUp']==='passNotMatch') {
+      $signUp = $_GET['signUp'];
+      if ($signUp==='passNotMatch') {
         echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">Password did not match!<br>Please try again.</p></center>';
+      } else if ($signUp === 'passTooShort') {
+        echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">Password is too short!<br>Please try again.</p></center>';
       } else if ($_GET['signUp']==='usernameOrEmailTaken') {
         echo '<center><p style="color:red; padding-top: 1em; font-weight: bold">Username or email is taken.<br>Please try again. </p></center>';
       }

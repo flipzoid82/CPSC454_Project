@@ -12,6 +12,10 @@
 		header("Location: ../signup.php?signUp=passNotMatch");
 		exit();
 	}
+	if (strlen($pwd) < 4) {
+		header("Location: ../signup.php?signUp=passTooShort");
+		exit();
+	}
 
 	$sql = "SELECT * FROM `user` WHERE `UID` = '$uid' OR `email`='$uid'";
 	$result = mysqli_query($conn, $sql);
